@@ -3,25 +3,18 @@ package com.Tienda.Back.Modulos;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Producto {
-@Id
+public class Detalle_Pedido {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private long id_producto;
-    private String nombre_producto;
-    private String url_image_product;
-    private String informacion_producto;
-    private double precio_producto;
-    private int stock_producto;
-    private String categoria;
-
-
+    private long id_detalle_pedido;
+    @JoinColumn(name = "id_pedido")
+    private long id_pedido;
 }
