@@ -16,7 +16,8 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id_pedido;
-    @ManyToMany
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Pedido pedido;
     @JoinColumn(name = "id_usuario")
     private int id_usuario;
     private LocalDateTime fecha_pedido;

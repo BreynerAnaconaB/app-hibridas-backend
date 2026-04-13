@@ -1,12 +1,11 @@
 package com.Tienda.Back.Modulos;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +14,15 @@ public class Detalle_Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_detalle_pedido;
-    @JoinColumn(name = "id_pedido")
-    private long id_pedido;
+    @ManyToOne
+    @JoinColumn(name = "id_pedido", nullable = false)
+    private Pedido pedido;
+    @ManyToOne
+    @JoinColumn(name = "id_producto", nullable = false)
+    private long id_producto;
+
+    private int cantidad;
+    private BigDecimal precio_unitario;
+    private BigDecimal subtotal;
+
 }
