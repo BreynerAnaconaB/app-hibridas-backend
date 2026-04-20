@@ -12,11 +12,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private long id_servicio;
+    private Long id_servicio;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)

@@ -10,10 +10,11 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Detalle_Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_detalle_servicio;
+    private Long id_detalle_servicio;
 
     @ManyToOne
     @JoinColumn(name = "id_service", nullable = false)

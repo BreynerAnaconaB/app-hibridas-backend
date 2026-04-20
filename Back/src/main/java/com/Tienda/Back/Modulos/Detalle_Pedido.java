@@ -10,16 +10,17 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Detalle_Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_detalle_pedido;
+    private Long id_detalle_pedido;
     @ManyToOne
     @JoinColumn(name = "id_pedido", nullable = false)
     private Pedido pedido;
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
-    private long id_producto;
+    private Producto producto;
 
     private int cantidad;
     private BigDecimal precio_unitario;
