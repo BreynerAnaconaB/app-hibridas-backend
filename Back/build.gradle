@@ -35,3 +35,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+bootJar {
+	archiveFileName = 'Back-app.jar'
+}
+jar {
+	enabled = false
+}
