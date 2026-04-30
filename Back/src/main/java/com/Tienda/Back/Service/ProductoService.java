@@ -29,8 +29,15 @@ public class ProductoService {
     }
 
     /**
+     * NUEVO MÉTODO DE BÚSQUEDA:
+     * Llama al método del repositorio que tiene la @Query manual.
+     */
+    public List<Producto> buscarPorNombre(String nombre) {
+        return productoRepository.buscarPorNombre(nombre);
+    }
+
+    /**
      * Crea un nuevo producto.
-     * Al usar URLs para las imágenes, el rendimiento es óptimo.
      */
     public Producto crearProducto(Producto producto) {
         return productoRepository.save(producto);
@@ -38,7 +45,6 @@ public class ProductoService {
 
     /**
      * Actualiza un producto existente.
-     * Retorna un Optional para que el Controller decida cómo manejar el error si no existe.
      */
     public Optional<Producto> actualizarProducto(Long id, Producto detalles) {
         return productoRepository.findById(id).map(producto -> {
