@@ -51,7 +51,11 @@ public class controllerUser {
         );
 
         if (esValido) {
-            return ResponseEntity.ok("Login exitoso. ¡Bienvenido!");
+            return ResponseEntity.ok(Map.of(
+                "token", "fake-jwt",
+                "email", loginData.getEmail(),
+                "nombre", "Usuario"
+            ));
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
