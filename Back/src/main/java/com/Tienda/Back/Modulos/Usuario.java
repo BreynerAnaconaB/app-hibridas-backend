@@ -1,37 +1,46 @@
 package com.Tienda.Back.Modulos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
+@Table(name = "usuarios")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
     @Column(nullable = false, length = 50)
     private String nombre;
+
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     private String contraseña;
 
+    @Column(nullable = false)
     private String telefono;
 
-    @Column(name = "fecha_registro")
+    @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
 
-    @OneToMany(mappedBy = "usuario")
+    // 🔥 IMPORTANTE: evitar errores de serialización y loops
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedidos;
 
-    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Servicio> servicios;
 }

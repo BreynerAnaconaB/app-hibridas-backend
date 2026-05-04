@@ -28,6 +28,12 @@ public class controllerUser {
     // --- REGISTRO ---
     @PostMapping("/crear")
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario datos) {
+
+        System.out.println("DATOS RECIBIDOS:");
+        System.out.println("Nombre: " + datos.getNombre());
+        System.out.println("Email: " + datos.getEmail());
+        System.out.println("Pass: " + datos.getContraseña());
+        System.out.println("Tel: " + datos.getTelefono());
         boolean creado = usuarioService.crearUsuario(
                 datos.getNombre(),
                 datos.getEmail(),
